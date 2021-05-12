@@ -21,11 +21,11 @@ jobs:
         # REQUIRED: Specify the required boost version
         # A list of supported versions can be found here: 
         # https://github.com/actions/boost-versions/blob/main/versions-manifest.json
-        boost_version: 1.68.0
+        boost_version: 1.69.0
         # OPTIONAL: Specify a toolset on windows
         # toolset: msvc14.0-32
         # OPTIONAL: Specify a custon install location
-        boost_install_dir: C:\local\boost_1_68_0
+        boost_install_dir: C:\local\
         # NOTE: If a boost version matching all requirements cannot be found,
         # this build step will fail
     - name: Add msbuild to PATH
