@@ -1,0 +1,43 @@
+name: Tinyphone Build
+
+on:
+  release:
+  push:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  tinyphone_win_job:
+    name: Build Tinyphone Windows
+    runs-on: windows-2016
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Install boost
+      uses: MarkusJx/install-boost@v1.0.1
+      id: install-boost
+      with:
+        # REQUIRED: Specify the required boost version
+        # A list of supported versions can be found here: 
+        # https://github.com/actions/boost-versions/blob/main/versions-manifest.json
+        boost_version: 1.68.0
+        # OPTIONAL: Specify a toolset on windows
+        # toolset: msvc14.0-32
+        # OPTIONAL: Specify a custon install location
+        boost_install_dir: C:\local\boost_1_68_0
+        # NOTE: If a boost version matching all requirements cannot be found,
+        # this build step will fail
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.2
+    - name: Run a one-line script
+      run: .\github\ci-bootstrap.ps1
+      shell: powershell
+    - name: "Create release"
+      uses: ncipollo/release-action@v1
+      if: startsWith(github.ref, 'refs/tags/v')
+      with:
+        artifacts: "./tinyphone/Release/tinyphone.exe,tinyphone-installer/bin/Release/tinyphone_installer.msi"
+        draft: true
+        allowUpdates: true
+        token: ${{ secrets.GH_TOKEN }}
