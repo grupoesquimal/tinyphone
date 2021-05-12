@@ -25,13 +25,13 @@ jobs:
         # OPTIONAL: Specify a toolset on windows
         # toolset: msvc14.0-32
         # OPTIONAL: Specify a custon install location
-        # boost_install_dir: C:\local\
+        boost_install_dir: C:\
         # NOTE: If a boost version matching all requirements cannot be found,
         # this build step will fail
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
     - name: Run a one-line script
-      run: .\github\ci-bootstrap.ps1
+      run: '& $env:GITHUB_ACTION_PATH\.github\ci-bootstrap.ps1'
       shell: powershell
     - name: "Create release"
       uses: ncipollo/release-action@v1
