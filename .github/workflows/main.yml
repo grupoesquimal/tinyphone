@@ -25,7 +25,7 @@ jobs:
         # OPTIONAL: Specify a toolset on windows
         # toolset: msvc14.0-32
         # OPTIONAL: Specify a custon install location
-        boost_install_dir: C:\local\
+        # boost_install_dir: C:\local\
         # NOTE: If a boost version matching all requirements cannot be found,
         # this build step will fail
     - name: Add msbuild to PATH
