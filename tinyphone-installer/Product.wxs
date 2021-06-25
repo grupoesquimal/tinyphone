@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?define UpgradeCode = "2bbe32a2-1e37-4663-97d4-cb9e5c7dfde3"?>
-<?define BaseName = "Strowger Tinyphone"?>
+<?define BaseName = "Esquimal Tinyphone"?>
 <?if $(var.tinyphone.Configuration) = "Debug" ?>
 <?define ShortcutName = "$(var.BaseName) Debug" ?>
 <?else?>

@@ -13,7 +13,7 @@
 #include "splash.h"
 #include "tpendpoint.h"
 #include <iphlpapi.h>
-#include <algorithm> 
+#include <algorithm>
 #include "app.hpp"
 
 #ifdef _DEBUG
@@ -39,7 +39,7 @@ UINT WM_TASKBAR = 0;
 HWND Hwnd;
 HMENU Hmenu;
 NOTIFYICONDATA notifyIconData;
-TCHAR szTIP[MAX_TOOLTIP_LENGTH] = TEXT("Strowger TinyPhone");
+TCHAR szTIP[MAX_TOOLTIP_LENGTH] = TEXT("Esquimal Tinyphone");
 char szClassName[] = "TinyPhone";
 SPLASH splashScreen;
 
@@ -49,7 +49,7 @@ void InitNotifyIconData();
 void ExitApplication();
 
 
-int WINAPI WinMain(HINSTANCE hThisInstance,		
+int WINAPI WinMain(HINSTANCE hThisInstance,
 	HINSTANCE hPrevInstance,
 	LPSTR lpszArgument,
 	int nCmdShow)
@@ -258,7 +258,7 @@ std::vector<std::string> GetLocalDNSServers() {
 	if (dwRetVal = GetNetworkParams(pFixedInfo, &ulOutBufLen) == NO_ERROR) {
 
 		printf("Host Name: %s\n", pFixedInfo->HostName);
-		
+
 		printf("DNS Servers:\n");
 		dnsServers.push_back(pFixedInfo->DnsServerList.IpAddress.String);
 		printf("\t%s\n", pFixedInfo->DnsServerList.IpAddress.String);
