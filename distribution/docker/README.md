@@ -1,8 +1,8 @@
 ## Build Docker Image
 
 ```
-docker build  -f Dockerfile.base -m 2G -t dotnet3.5-vs17:latest  .
-docker build  -f Dockerfile.build -m 2G -t tinyphone  .
+docker build  -f Dockerfile.base -t dotnet3.5-vs17:latest  .
+docker build  -f Dockerfile.build -t tinyphone  .
 ```
 
 ## Run Docker

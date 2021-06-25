@@ -5,6 +5,10 @@ FROM dotnet3.5-vs17:latest
 # Reset the shell.
 # SHELL ["cmd", "/S", "/C"]
 
+RUN mkdir C:\Code\tinyphone\
+WORKDIR C:\Code\tinyphone\
+COPY . .
+
 RUN mkdir C:\Build\
 WORKDIR C:\Build
 

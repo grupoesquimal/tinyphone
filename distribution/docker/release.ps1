@@ -7,9 +7,9 @@ Write-Host 'Building Tinyphone!'
 
 cd C:\Code
 
-git config --global url.https://github.com/.insteadOf git@github.com:
-git clone --recurse-submodules -j8 https://github.com/grupoesquimal/tinyphone.git
-cd C:\Code\tinyphone\
+#git config --global url.https://github.com/.insteadOf git@github.com:
+#git clone --recurse-submodules -j8 https://github.com/grupoesquimal/tinyphone.git
+#cd C:\Code\tinyphone\
 # git checkout docker
 
 # git apply C:\Build\fk.patch
