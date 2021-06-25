@@ -31,7 +31,7 @@ namespace tp {
 	struct response : crow::response {
 		response(int code, const nlohmann::json& _body) : crow::response{ code,  _body.dump() } {
 			add_header("Access-Control-Allow-Origin", "*");
-			add_header("Access-Control-Allow-Headers", "Content-Type");
+			add_header("Access-Control-Allow-Headers", "*");
 			add_header("Content-Type", "application/json");
 		}
 	};
@@ -61,7 +61,7 @@ void TinyPhoneHttpServer::Start() {
 
 	phone.ConfigureAudioDevices();
 	phone.InitMetricsClient();
-	
+
 	phone.CreateEventStream(&updates);
 	phone.RestoreAccounts();
 
@@ -110,7 +110,7 @@ void TinyPhoneHttpServer::Start() {
 			};
 			conn.send_text(message.dump());
 		});
-	
+
 		auto _thread = std::thread([&updates, &subscribers]() {
 			std::string data;
 			while (!updates.is_closed()) {
@@ -125,7 +125,7 @@ void TinyPhoneHttpServer::Start() {
 		});
 		ws_publisher_thread = std::move(_thread);
 	}
-	
+
 	CROW_ROUTE(app, "/devices")
 		.methods("GET"_method)
 		([&phone]() {
@@ -178,7 +178,7 @@ void TinyPhoneHttpServer::Start() {
 
 			pj_thread_auto_register();
 			CROW_LOG_INFO << "Registering account " << account_name;
-			
+
 			auto existing_account = phone.AccountByName(account_name);
 			if (existing_account != nullptr) {
 				tp::MetricsClient.increment("api.login.exists");
@@ -377,7 +377,7 @@ void TinyPhoneHttpServer::Start() {
 			dial_uri = req.body;
 		}
 
-		if (account == nullptr) { 
+		if (account == nullptr) {
 			account = phone.PrimaryAccount(); //use default account if account_name was not specified
 		}
 
@@ -533,7 +533,7 @@ void TinyPhoneHttpServer::Start() {
 					break;
 				case crow::HTTPMethod::Delete:
 					response["message"] = "BreakConference Triggered";
-					response["status"] = phone.BreakConference(call);	
+					response["status"] = phone.BreakConference(call);
 					break;
 				default:
 					break;
@@ -541,12 +541,12 @@ void TinyPhoneHttpServer::Start() {
 			return tp::response(200, response);
 		}
 	});
-	
+
 	CROW_ROUTE(app, "/calls/<int>/transfer")
 	.methods("POST"_method)
 	([&phone](const crow::request& req, int call_id) {
 		pj_thread_auto_register();
-		
+
 		std::string refer_uri;
 		try {
 			json j = json::parse(req.body);
@@ -556,7 +556,7 @@ void TinyPhoneHttpServer::Start() {
 				{ "message", "Bad request payload." },
 			});
 		}
-		
+
 		SIPCall* call = phone.CallById(call_id);
 		if (call == nullptr) {
 			return tp::response(400, {
@@ -564,10 +564,10 @@ void TinyPhoneHttpServer::Start() {
 				{"call_id" , call_id}
 			});
 		}
-		
+
 		auto sip_uri = tp::GetSIPURI(refer_uri, call->getAccount()->domain);
 		CROW_LOG_INFO << "Transfer Request to " << sip_uri ;
-		
+
 		try {
 			CallOpParam prm;
 			call->xfer(sip_uri, &prm);
@@ -680,7 +680,7 @@ void TinyPhoneHttpServer::Start() {
 			} else {
 				return tp::response(200, response);
 			}
-			
+
 		}
 		catch (...) {
 			return tp::response(500, DEFAULT_HTTP_SERVER_ERROR_REPONSE);
@@ -693,7 +693,7 @@ void TinyPhoneHttpServer::Start() {
 		([](const crow::request& req) {
 		try {
 			std::string tmp_file = boost::filesystem::temp_directory_path().string() + "/" + boost::filesystem::unique_path().string() + ".tar";
-		
+
 			mtar_t tar; tm* pt_tm;
 			mtar_open(&tar, tmp_file.c_str(), "w");
 
@@ -712,17 +712,17 @@ void TinyPhoneHttpServer::Start() {
 			}
 			mtar_finalize(&tar);
 			mtar_close(&tar);
-	
+
 			auto tar_bytes = file_all_bytes(tmp_file);
 			remove(tmp_file.c_str());
 
 			auto response = crow::response(tar_bytes);
-			response.set_header("Content-Type", "application/octet-stream"); 
+			response.set_header("Content-Type", "application/octet-stream");
 
 			std::string ip_addr = local_ip_address();
 			std::replace(ip_addr.begin(), ip_addr.end(), '.', '_');
 			std::string log_file_name = LogFileName("logs-" + ip_addr, "tar", pt_tm);
-	
+
 			response.set_header("Content-Disposition", "attachment; filename=\""+ log_file_name +"\"");
 			return response;
 		}
@@ -798,7 +798,7 @@ void TinyPhoneHttpServer::Start() {
 	Stop();
 
 	CROW_LOG_INFO << "Server has been shutdown... Will Exit now....";
-	
+
 	updates.close();
 
 	if (tp::ApplicationConfig.enableWSEvents) {
@@ -814,7 +814,7 @@ void TinyPhoneHttpServer::Stop(){
 	CROW_LOG_INFO << "TinyPhoneHttpServer::Stop.....";
 
 	if (running) {
-		running = false; 
+		running = false;
 		CROW_LOG_INFO << "Terminating current running call(s) if any...";
 
 		pj_thread_auto_register();

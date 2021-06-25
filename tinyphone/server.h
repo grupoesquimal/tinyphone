@@ -7,7 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include <pjsua2.hpp>
-#include <chrono>	
+#include <chrono>
 #include "metrics.h"
 #include "log.h"
 #include "phone.h"
@@ -57,10 +57,10 @@ struct TinyPhoneMiddleware
 	void before_handle(crow::request& req, crow::response& res, context& ctx)
 	{
 		ctx.start = std::chrono::system_clock::now();
+		res.add_header("Access-Control-Allow-Origin", "*");
+		res.add_header("Access-Control-Allow-Methods", "*");
+		res.add_header("Access-Control-Request-Headers", "*");
 		if (req.method == crow::HTTPMethod::Options){
-			res.add_header("Access-Control-Allow-Origin", "*");
-			res.add_header("Access-Control-Allow-Methods", "OPTIONS, GET, HEAD, POST, PUT, DELETE");
-			res.add_header("Access-Control-Request-Headers", "Content-Type");
 			res.end();
 		}
 	}
@@ -96,11 +96,10 @@ public:
 	}
 
 	void Configure();
-	
+
 	void Start();
 
 	void Stop();
 };
 
 #endif
- 

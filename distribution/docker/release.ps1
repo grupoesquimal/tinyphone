@@ -8,7 +8,7 @@ Write-Host 'Building Tinyphone!'
 cd C:\Code
 
 git config --global url.https://github.com/.insteadOf git@github.com:
-git clone --recurse-submodules -j8 https://github.com/voiceip/tinyphone.git
+git clone --recurse-submodules -j8 https://github.com/grupoesquimal/tinyphone.git
 cd C:\Code\tinyphone\
 # git checkout docker
 
@@ -30,7 +30,7 @@ ls E:\lib\curl\builds
 cmd /c .\libcurl-vc15-x86-release-dll-ipv6-sspi-winssl\bin\curl.exe https://wttr.in/bangalore
 
 
-#great 
+#great
 
 
 #G729
