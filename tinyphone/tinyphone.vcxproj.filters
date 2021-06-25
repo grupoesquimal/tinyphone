@@ -124,10 +124,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resources\tinyphone.ico">
+    <Image Include="resources\esquimal.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="resources\splash.bmp">
+    <Image Include="resources\esquimal.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

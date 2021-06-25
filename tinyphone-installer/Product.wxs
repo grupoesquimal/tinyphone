@@ -20,14 +20,14 @@
       <ComponentGroupRef Id="ProductSupportComponents" />
     </Feature>
 
-    <Icon Id="icon.ico" SourceFile="$(var.tinyphone.ProjectDir)\resources\tinyphone.ico" />
+    <Icon Id="icon.ico" SourceFile="$(var.tinyphone.ProjectDir)\resources\esquimal.ico" />
     <Property Id="ARPPRODUCTICON" Value="icon.ico"/>
     <Property Id='ARPHELPLINK'>https://github.com/voiceip/tinyphone</Property>
 
     <Property Id="WixQuietExecCmdLine" Value='"[WindowsFolder]\System32\taskkill.exe" /F /IM $(var.tinyphone.TargetFileName)' Hidden="yes"/>
     <CustomAction Id="Tinyphone.TaskKill" BinaryKey="WixCA" DllEntry="WixQuietExec" Execute="immediate" Return="ignore"/>
 
-    <CustomAction Id="PostInstScript.SetParam" Return="check"  Property="PostInstScript" Value="[ProcessorArchitecture]" /> 
+    <CustomAction Id="PostInstScript.SetParam" Return="check"  Property="PostInstScript" Value="[ProcessorArchitecture]" />
 
     <InstallExecuteSequence>
       <!--<RemoveExistingProducts Before="InstallInitialize"/> -->
@@ -39,7 +39,7 @@
   <Fragment>
     <Binary Id="MSIActions" SourceFile="$(var.installer-actions.TargetPath)" />
     <CustomAction Id="PostInstScript" Return="ignore" BinaryKey="MSIActions" DllEntry="PostInstall"
-          Execute="deferred" Impersonate="no" /> 
+          Execute="deferred" Impersonate="no" />
   </Fragment>
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
@@ -65,7 +65,7 @@
               Action="createAndRemoveOnUninstall">
             <RegistryValue Type="integer" Name="CpuPriorityClass" Value="3"/>
           </RegistryKey>
-      </Component> 
+      </Component>
     </ComponentGroup>
     <ComponentGroup Id="ProductSystemComponents" Directory="SystemFolder" >
       <Component Id="DLLComponent" Guid="{AE75A17D-3EBF-4B68-AA32-73D18D983315}">

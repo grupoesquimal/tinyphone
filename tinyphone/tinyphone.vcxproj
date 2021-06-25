@@ -216,8 +216,8 @@
     <ClCompile Include="winapp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resources\splash.bmp" />
-    <Image Include="resources\tinyphone.ico" />
+    <Image Include="resources\esquimal.bmp" />
+    <Image Include="resources\esquimal.ico" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
