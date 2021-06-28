@@ -57,9 +57,6 @@ struct TinyPhoneMiddleware
 	void before_handle(crow::request& req, crow::response& res, context& ctx)
 	{
 		ctx.start = std::chrono::system_clock::now();
-		res.add_header("Access-Control-Allow-Origin", "*");
-		res.add_header("Access-Control-Allow-Methods", "*");
-		res.add_header("Access-Control-Request-Headers", "*");
 		if (req.method == crow::HTTPMethod::Options){
 			res.end();
 		}
@@ -68,8 +65,9 @@ struct TinyPhoneMiddleware
 	void after_handle(crow::request& /*req*/, crow::response& res, context& ctx)
 	{
 		res.add_header("Access-Control-Allow-Origin", "*");
+		res.add_header("Access-Control-Allow-Headers", "*");
 		res.add_header("Access-Control-Allow-Methods", "*");
-		res.add_header("Access-Control-Request-Headers", "*");
+		res.add_header("Access-Control-Allow-Credentials", "true");
 		auto now = std::chrono::system_clock::now();
 		auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(now - ctx.start).count();
 		tp::MetricsClient.increment("http.response." + std::to_string(res.code));

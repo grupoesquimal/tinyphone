@@ -30,8 +30,6 @@ using namespace boost::posix_time;
 namespace tp {
 	struct response : crow::response {
 		response(int code, const nlohmann::json& _body) : crow::response{ code,  _body.dump() } {
-			add_header("Access-Control-Allow-Origin", "*");
-			add_header("Access-Control-Allow-Headers", "*");
 			add_header("Content-Type", "application/json");
 		}
 	};

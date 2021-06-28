@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  build:
+    image:  tinyphone_base
+    environment:
+      CodeDir: C:\Code\tinyphone
+    volumes:
+      - ./:C:\Code\tinyphone
+networks:
+   default:
+    name: nat

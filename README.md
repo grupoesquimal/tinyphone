@@ -1,7 +1,7 @@
 # Tinyphone
 Minimalist Softphone based on PJSIP with API Control
 
-[![AppVeyor](https://img.shields.io/appveyor/ci/kingster/tinyphone)](https://ci.appveyor.com/project/kingster/tinyphone/) 
+[![AppVeyor](https://img.shields.io/appveyor/ci/kingster/tinyphone)](https://ci.appveyor.com/project/kingster/tinyphone/)
 
 ## Getting Started
 
@@ -14,9 +14,9 @@ You can download the latest msi installer from [here](https://ci.appveyor.com/pr
 *[Optional]* After Installing you can customise the tinyphone properties by downloading and placing the [config file](https://raw.githubusercontent.com/voiceip/tinyphone/HEAD/config.json) in the folder `C:\Program Files (x86)\Tinyphone\`.
 
 
-## APIs 
+## APIs
 
-The softphone exposes the following resources on port `6060`. 
+The softphone exposes the following resources on port `6060`.
 
 
 
@@ -85,9 +85,9 @@ The softphone exposes the following resources on port `6060`.
 <pre lang="json">
 {
 "uri": "sip-uri",
-"account": "account_name**" 
+"account": "account_name**"
 }
-</pre>  
+</pre>
 </td>
 <td>Dial a call with provided <code>sip-uri</code></td>
 </tr>
@@ -141,7 +141,7 @@ The softphone exposes the following resources on port `6060`.
 {
 "uri": "sip-uri",
 }
-</pre> 
+</pre>
 </td>
 <td>transfer <code>call_id</code> to specified <code>uri</code></td>
 </tr>
@@ -179,6 +179,12 @@ You can view the postman collection of the APIs [here](https://documenter.getpos
 
 You must have boost libraries installed on your system. Incase you don't have you can either download the [sources](https://www.boost.org/users/download/) and build it, or install a precompiled binaries from [here](https://sourceforge.net/projects/boost/files/boost-binaries/).
 
+## Build Docker Image
+
+```
+docker build -t tinyphone_base  .
+docker-compose up
+```
 
 ### Manual Compiling
 

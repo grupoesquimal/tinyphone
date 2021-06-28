@@ -56,7 +56,7 @@ build_script:
 
     cd E:\lib\curl\builds
 
-    ls 
+    ls
 
     cmd /c MKLINK /D E:\lib\curl\builds\libcurl-vc-x86-release-dll-ipv6-sspi-winssl E:\lib\curl\builds\libcurl-vc15-x86-release-dll-ipv6-sspi-winssl
     ls E:\lib\curl\builds
